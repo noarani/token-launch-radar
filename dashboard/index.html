@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — radar-3</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>Token Launch Radar</h1>
+    <p id="subtitle">Pre-token protocols ranked by implied value · model radar-3</p>
+  </div>
+  <nav>
+    <button data-view="board" class="nav active">Board</button>
+    <button data-view="live" class="nav">Live tokens</button>
+    <button data-view="method" class="nav">Method</button>
+  </nav>
+</header>
+
+<section id="view-board">
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search name, slug, chain…">
+    <select id="f-cat"><option value="">All categories</option></select>
+    <select id="f-chain"><option value="">All chains</option></select>
+    <select id="f-band">
+      <option value="">All TVL bands</option>
+      <option value="0">Under $50M</option>
+      <option value="1">$50M-$500M</option>
+      <option value="2">Over $500M</option>
+    </select>
+    <label class="chk"><input type="checkbox" id="f-watch"> Watchlist only</label>
+    <select id="sort">
+      <option value="rank">Sort: rank</option>
+      <option value="value">Sort: implied value</option>
+      <option value="tvl">Sort: TVL</option>
+      <option value="change">Sort: 7d change</option>
+      <option value="range">Sort: range high</option>
+    </select>
+    <span id="count" class="muted"></span>
+  </div>
+  <div class="layout">
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>#</th><th>Protocol</th><th>Category</th><th>TVL</th><th>7d</th>
+          <th>Implied value</th><th>Range</th><th>Conf.</th><th></th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <aside id="detail" class="detail">
+      <p class="muted">Select a protocol to see its detail view.</p>
+    </aside>
+  </div>
+</section>
+
+<section id="view-live" hidden>
+  <p class="muted" id="live-note"></p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Protocol</th><th>Symbol</th><th>Category</th><th>TVL</th><th>Market cap</th><th>mcap/TVL</th></tr></thead>
+      <tbody id="live-rows"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="view-method" hidden>
+  <div class="method" id="method-body"></div>
+</section>
+
+<footer>
+  <p class="muted">Snapshot: DefiLlama protocols, as of <span id="asof"></span>. Implied values are this model's claims, not predictions that a token will launch. Farm plans are informational; verify contracts and official channels before depositing.</p>
+</footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
